@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cibolo Custom Creations | Custom Pens & Balloon Arches</title>
+    
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
+
+    <style>
+        /* Luxury Dark Mode & Gold Palette */
+        :root {
+            --brand-black: #050505; 
+            --brand-dark-grey: #121212;
+            --brand-white: #ffffff; 
+            --brand-gold: #C0A060; 
+            --brand-accent: #ff8c00; 
+            --card-bg: #151515; 
+            --border-color: #333333; 
+            --text-main: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --price-color: #e6a822; 
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--brand-black); 
+            color: var(--text-main);
+        }
+
+        /* Amazon-Style Header */
+        header {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--brand-gold);
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 55px;
+            border-radius: 4px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--brand-white);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .logo-text span {
+            color: var(--brand-gold);
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 700px;
+            display: flex;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 18px;
+            border: 1px solid var(--border-color);
+            background-color: var(--brand-dark-grey);
+            color: var(--brand-white);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .search-bar input::placeholder {
+            color: #777;
+        }
+
+        .search-bar button {
+            background-color: var(--brand-gold);
+            color: var(--brand-black);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--brand-accent);
+        }
+
+        .cart-icon {
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: var(--brand-white);
+        }
+
+        /* Category Navigation */
+        nav {
+            background-color: var(--brand-dark-grey);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        nav button:hover, nav button.active {
+            background-color: rgba(192, 160, 96, 0.15);
+            color: var(--brand-gold);
+        }
+
+        /* Product Grid */
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        /* Product Cards */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+            border-color: var(--brand-gold);
+        }
+
+        .card-img-container {
+            height: 280px;
+            background-color: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-category {
+            font-size: 11px;
+            color: var(--brand-gold);
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+            font-weight: bold;
+            color: var(--brand-white);
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .card-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--price-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            background-color: var(--brand-gold);
+            color: var(--brand-black);
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-add:hover {
+            background-color: var(--brand-accent);
+            transform: scale(1.02);
+        }
+
+        /* Balloon CTA */
+        .balloon-cta {
+            background-color: var(--brand-black); 
+            color: var(--brand-white);
+            text-align: center;
+            padding: 70px 20px;
+            border-top: 2px solid var(--brand-gold);
+            margin-top: 50px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('LOGO_1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .balloon-cta h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--brand-gold);
+            letter-spacing: 2px;
+        }
+
+        .balloon-cta p {
+            font-size: 18px;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .btn-balloon {
+            background-color: transparent;
+            color: var(--brand-gold);
+            border: 2px solid var(--brand-gold);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-balloon:hover {
+            background-color: var(--brand-gold);
+            color: var(--brand-black);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--brand-black);
+            color: #666;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-container">
+            <img src="LOGO_1.jpg" alt="Cibolo Custom Creations Logo" onerror="fallbackImage(this, 'LOGO_1')">
+            <h1 class="logo-text">Cibolo<span>CustomCreations</span></h1>
+        </a>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for faith pens, teacher gifts, sorority, or personalized items...">
+            <button onclick="filterProducts()">Search</button>
+        </div>
+        <div class="cart-icon snipcart-checkout">
+            🛒 Cart (<span class="snipcart-items-count">0</span>) - <span class="snipcart-total-price">$0.00</span>
+        </div>
+    </header>
+
+    <nav>
+        <button class="active" onclick="renderProducts('All')">Shop All</button>
+        <button onclick="renderProducts('Faith')">Faith & Inspiration</button>
+        <button onclick="renderProducts('Sorority')">Sorority Pride</button>
+        <button onclick="renderProducts('Teacher')">Teachers & Medical</button>
+        <button onclick="renderProducts('Characters')">Characters & Sports</button>
+        <button onclick="renderProducts('Elegant')">Elegant Pearl & Bow</button>
+        <button onclick="renderProducts('Personalized')">Personalized Pen</button>
+    </nav>
+
+    <div class="container">
+        <div class="product-grid" id="productGrid">
+            </div>
+    </div>
+
+    <div class="balloon-cta">
+        <h2>CUSTOM BALLOON ARCHES & EVENT DECOR</h2>
+        <p>Make your next celebration unforgettable with our professional balloon arches, garlands, and custom centerpieces. Serving Cibolo, Schertz, and the surrounding San Antonio area. Contact us today to discuss your theme and get a custom quote!</p>
+        <a href="mailto:info@cibolocustomcreations.com?subject=Balloon Arch Inquiry" class="btn-balloon">Request a Quote</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Cibolo Custom Creations. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Image Fallback to handle any JPG/JPG case issues gracefully
+        function fallbackImage(img, baseName) {
+            if (!img.dataset.triedJpg) {
+                img.dataset.triedJpg = 'true';
+                img.src = baseName + '.jpg'; 
+            } else if (!img.dataset.triedCaps) {
+                img.dataset.triedCaps = 'true';
+                img.src = baseName + '.JPG';
+            } else if (!img.dataset.triedDoubleJpg) {
+                img.dataset.triedDoubleJpg = 'true';
+                img.src = baseName + '.jpg.jpg';
+            } else if (!img.dataset.triedDoubleCaps) {
+                img.dataset.triedDoubleCaps = 'true';
+                img.src = baseName + '.jpg.JPG';
+            } else {
+                img.onerror = null;
+                img.parentElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #888; border: 1px dashed #333;">Missing:<br>' + baseName + '.jpg</div>';
+            }
+        }
+
+        // Product Database
+        const products = [
+            { id: "CCC-001", category: "Faith", title: "Faith & Inspiration Pens", desc: "Beautiful rhinestone pens featuring Holy Bible, Cross, and God's Plan focals.", price: "$14.99", imageFile: "IMG_32" },
+            { id: "CCC-002", category: "Teacher", title: "Teacher & Graduation Pens", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: "$14.99", imageFile: "IMG_33" },
+            { id: "CCC-003", category: "Teacher", title: "Nurses & Medical Heroes", desc: "Show support for healthcare heroes with these adorable nurse and awareness pens.", price: "$14.99", imageFile: "IMG_31" },
+            { id: "CCC-004", category: "Characters", title: "Stitch & Friends Characters", desc: "Super fun focal beads featuring everyone's favorite alien in various colors.", price: "$14.99", imageFile: "IMG_30" },
+            { id: "CCC-005", category: "Sorority", title: "Delta Sigma Theta Premium", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: "$14.99", imageFile: "IMG_34" },
+            { id: "CCC-006", category: "Personalized", title: "Personalized Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: "$24.99", imageFile: "IMG_35" },
+            { id: "CCC-007", category: "Elegant", title: "Elegant Satin Bow Pens", desc: "Luxurious satin bow focals paired with brilliant rhinestones and character accents.", price: "$19.99", imageFile: "IMG_36" },
+            { id: "CCC-008", category: "Characters", title: "Disney Character Focals", desc: "Super fun focal beads featuring Toy Story Aliens and Donald Duck.", price: "$14.99", imageFile: "IMG_12" },
+            { id: "CCC-009", category: "Elegant", title: "Elegant Pearl Beaded Pens", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: "$14.99", imageFile: "IMG_14" },
+            { id: "CCC-010", category: "Teacher", title: "Teach Love Inspire Pen", desc: "Show appreciation for educators with this beautiful rhinestone apple and book focal.", price: "$14.99", imageFile: "IMG_15" },
+            { id: "CCC-011", category: "Sorority", title: "Ballet, Dance & Dental Pens", desc: "Stunning pink and black rhinestone pens featuring ballet slippers, 'Dance', and happy tooth charms.", price: "$14.99", imageFile: "IMG_16" },
+            { id: "CCC-013", category: "Characters", title: "Anime & Grad Pens", desc: "A varied collection featuring fun lanyards, character pens, and graduation caps.", price: "$14.99", imageFile: "IMG_25" },
+            { id: "CCC-014", category: "Elegant", title: "Rose Gold & Character Styles", desc: "Luxurious rose gold rhinestone beads alongside classic character designs.", price: "$14.99", imageFile: "IMG_27" },
+            { id: "CCC-015", category: "Sorority", title: "DST & AKA Sorority Focals", desc: "Crimson, cream, pink, and green perfection featuring 'Understand the Assignment' charms.", price: "$14.99", imageFile: "IMG_28" },
+            { id: "CCC-016", category: "Teacher", title: "Boxed Display Gifts", desc: "Perfect gifts for educators or Disney fans, presented in sleek protective display cases.", price: "$14.99", imageFile: "IMG_5" },
+            { id: "CCC-017", category: "Characters", title: "Gamer & Sport Characters", desc: "Super fun focal beads featuring Pikachu, Bowser, Kuromi, and Basketballs.", price: "$14.99", imageFile: "IMG_8" },
+            { id: "CCC-018", category: "Teacher", title: "Medical, Grad & Awareness", desc: "Celebrate milestones with graduation caps, or show support with awareness ribbons.", price: "$14.99", imageFile: "IMG_7" },
+            { id: "CCC-019", category: "Personalized", title: "Custom Name Pen", desc: "Premium acrylic beadable pen featuring custom beads and a personalized custom name.", price: "$24.99", imageFile: "IMG_3" },
+            { id: "CCC-020", category: "Sorority", title: "DST Emblem Pens", desc: "Premium crimson & cream and pink & green themed pens with detailed charms.", price: "$14.99", imageFile: "IMG_4" }
+        ];
+
+        // Render products
+        function renderProducts(categoryFilter) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = ''; 
+
+            let filteredProducts = products;
+            if (categoryFilter !== 'All') {
+                filteredProducts = products.filter(p => p.category === categoryFilter);
+            }
+
+            const navButtons = document.querySelectorAll('nav button');
+            navButtons.forEach(btn => {
+                if (btn.innerText.includes(categoryFilter) || (categoryFilter === 'All' && btn.innerText === 'Shop All')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            filteredProducts.forEach(product => {
+                const cleanPrice = product.price.replace('$', '');
+                
+                // Snipcart Custom Fields: Add textbox rules if it's a personalized pen
+                let customFields = '';
+                if (product.category === 'Personalized') {
+                    customFields = `
+                        data-item-custom1-name="Enter the Custom Name for this Pen"
+                        data-item-custom1-type="textbox"
+                        data-item-custom1-required="true"
+                    `;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img-container">
+                        <img src="${product.imageFile}.jpg" alt="${product.title}" onerror="fallbackImage(this, '${product.imageFile}')">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">${product.category}</div>
+                        <h3 class="card-title">${product.title}</h3>
+                        <p class="card-desc">${product.desc}</p>
+                        <div class="card-price">${product.price}</div>
+                        <button class="btn-add snipcart-add-item"
+                            data-item-id="${product.id}"
+                            data-item-price="${cleanPrice}"
+                            data-item-url="/"
+                            data-item-image="${product.imageFile}.jpg"
+                            data-item-name="${product.title}"
+                            data-item-description="${product.desc}"
+                            ${customFields}>
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Search Function
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            const searchedProducts = products.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.desc.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+
+            searchedProducts.forEach(product => {
+                const cleanPrice = product.price.replace('$', '');
+                
+                let customFields = '';
+                if (product.category === 'Personalized') {
+                    customFields = `
+                        data-item-custom1-name="Enter the Custom Name for this Pen"
+                        data-item-custom1-type="textbox"
+                        data-item-custom1-required="true"
+                    `;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img-container">
+                        <img src="${product.imageFile}.jpg" alt="${product.title}" onerror="fallbackImage(this, '${product.imageFile}')">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">${product.category}</div>
+                        <h3 class="card-title">${product.title}</h3>
+                        <p class="card-desc">${product.desc}</p>
+                        <div class="card-price">${product.price}</div>
+                        <button class="btn-add snipcart-add-item"
+                            data-item-id="${product.id}"
+                            data-item-price="${cleanPrice}"
+                            data-item-url="/"
+                            data-item-image="${product.imageFile}.jpg"
+                            data-item-name="${product.title}"
+                            data-item-description="${product.desc}"
+                            ${customFields}>
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Load 'All' on startup
+        window.onload = () => renderProducts('All');
+    </script>
+
+    <div hidden id="snipcart" data-api-key="NjQ1N2ZjODctMTU0ZS00NTU4LTk2ZGEtZTExOWJjYjMwOTVkNjM5MTM2Njk5NTk5NjQ0NzAz"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
+
+</body>
+</html>
