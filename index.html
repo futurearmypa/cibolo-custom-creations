@@ -105,6 +105,7 @@
             background-color: var(--brand-accent);
         }
 
+        /* Snipcart Checkout Button */
         .cart-icon {
             font-size: 18px;
             cursor: pointer;
@@ -248,6 +249,64 @@
             transform: scale(1.02);
         }
 
+        /* About Us Section */
+        .about-section {
+            background-color: var(--brand-dark-grey);
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container h2 {
+            font-size: 32px;
+            color: var(--brand-gold);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .about-container p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .about-box {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-box h3 {
+            color: var(--brand-gold);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .about-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            color: var(--text-muted);
+        }
+
         /* Balloon CTA */
         .balloon-cta {
             background-color: var(--brand-black); 
@@ -255,7 +314,6 @@
             text-align: center;
             padding: 70px 20px;
             border-top: 2px solid var(--brand-gold);
-            margin-top: 50px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('LOGO_1.jpg');
             background-size: cover;
             background-position: center;
@@ -335,6 +393,29 @@
             </div>
     </div>
 
+    <div class="about-section">
+        <div class="about-container">
+            <h2>Welcome to Cibolo Custom Creations</h2>
+            <p>Elevate your everyday essentials and make your next celebration unforgettable. At Cibolo Custom Creations, we bring a touch of luxury and deep personalization to everything we craft—from beautiful desk accessories to show-stopping event decor.</p>
+            <p>Whether you are treating yourself, finding the perfect gift for a teacher or graduate, or planning a massive party, we are here to bring your vision to life.</p>
+            
+            <div class="about-grid">
+                <div class="about-box">
+                    <h3>Custom Accessories</h3>
+                    <p>Make your mark with our signature beadable accessories. Whether you are looking for a beautifully crafted Custom Pen, a fun character design, or a premium piece featuring your specific name and colors, we build every item to stand out.</p>
+                </div>
+                <div class="about-box">
+                    <h3>Gifts & Essentials</h3>
+                    <p>Upgrade your workspace with custom-engraved pencils and premium stationery. Discover our collection of handmade fidget toys, unique custom jewelry, and celebratory graduation leis, all designed with our signature attention to detail.</p>
+                </div>
+                <div class="about-box">
+                    <h3>Professional Event Decor</h3>
+                    <p>Proudly serving Cibolo, Schertz, and the surrounding San Antonio area, we specialize in custom balloon arches, stunning garlands, and eye-catching centerpieces. We work directly with you to match your exact theme.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="balloon-cta">
         <h2>CUSTOM BALLOON ARCHES & EVENT DECOR</h2>
         <p>Make your next celebration unforgettable with our professional balloon arches, garlands, and custom centerpieces. Serving Cibolo, Schertz, and the surrounding San Antonio area. Contact us today to discuss your theme and get a custom quote!</p>
@@ -368,25 +449,24 @@
 
         // Product Database
         const products = [
-            { id: "CCC-001", category: "Faith", title: "Faith & Inspiration Pens", desc: "Beautiful rhinestone pens featuring Holy Bible, Cross, and God's Plan focals.", price: "$14.99", imageFile: "IMG_32" },
-            { id: "CCC-002", category: "Teacher", title: "Teacher & Graduation Pens", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: "$14.99", imageFile: "IMG_33" },
-            { id: "CCC-003", category: "Teacher", title: "Nurses & Medical Heroes", desc: "Show support for healthcare heroes with these adorable nurse and awareness pens.", price: "$14.99", imageFile: "IMG_31" },
-            { id: "CCC-004", category: "Characters", title: "Stitch & Friends Characters", desc: "Super fun focal beads featuring everyone's favorite alien in various colors.", price: "$14.99", imageFile: "IMG_30" },
-            { id: "CCC-005", category: "Sorority", title: "Delta Sigma Theta Premium", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: "$14.99", imageFile: "IMG_34" },
-            { id: "CCC-006", category: "Personalized", title: "Personalized Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: "$24.99", imageFile: "IMG_35" },
-            { id: "CCC-007", category: "Elegant", title: "Elegant Satin Bow Pens", desc: "Luxurious satin bow focals paired with brilliant rhinestones and character accents.", price: "$19.99", imageFile: "IMG_36" },
-            { id: "CCC-008", category: "Characters", title: "Disney Character Focals", desc: "Super fun focal beads featuring Toy Story Aliens and Donald Duck.", price: "$14.99", imageFile: "IMG_12" },
-            { id: "CCC-009", category: "Elegant", title: "Elegant Pearl Beaded Pens", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: "$14.99", imageFile: "IMG_14" },
-            { id: "CCC-010", category: "Teacher", title: "Teach Love Inspire Pen", desc: "Show appreciation for educators with this beautiful rhinestone apple and book focal.", price: "$14.99", imageFile: "IMG_15" },
-            { id: "CCC-011", category: "Sorority", title: "Ballet, Dance & Dental Pens", desc: "Stunning pink and black rhinestone pens featuring ballet slippers, 'Dance', and happy tooth charms.", price: "$14.99", imageFile: "IMG_16" },
-            { id: "CCC-013", category: "Characters", title: "Anime & Grad Pens", desc: "A varied collection featuring fun lanyards, character pens, and graduation caps.", price: "$14.99", imageFile: "IMG_25" },
-            { id: "CCC-014", category: "Elegant", title: "Rose Gold & Character Styles", desc: "Luxurious rose gold rhinestone beads alongside classic character designs.", price: "$14.99", imageFile: "IMG_27" },
-            { id: "CCC-015", category: "Sorority", title: "DST & AKA Sorority Focals", desc: "Crimson, cream, pink, and green perfection featuring 'Understand the Assignment' charms.", price: "$14.99", imageFile: "IMG_28" },
-            { id: "CCC-016", category: "Teacher", title: "Boxed Display Gifts", desc: "Perfect gifts for educators or Disney fans, presented in sleek protective display cases.", price: "$14.99", imageFile: "IMG_5" },
-            { id: "CCC-017", category: "Characters", title: "Gamer & Sport Characters", desc: "Super fun focal beads featuring Pikachu, Bowser, Kuromi, and Basketballs.", price: "$14.99", imageFile: "IMG_8" },
-            { id: "CCC-018", category: "Teacher", title: "Medical, Grad & Awareness", desc: "Celebrate milestones with graduation caps, or show support with awareness ribbons.", price: "$14.99", imageFile: "IMG_7" },
-            { id: "CCC-019", category: "Personalized", title: "Custom Name Pen", desc: "Premium acrylic beadable pen featuring custom beads and a personalized custom name.", price: "$24.99", imageFile: "IMG_3" },
-            { id: "CCC-020", category: "Sorority", title: "DST Emblem Pens", desc: "Premium crimson & cream and pink & green themed pens with detailed charms.", price: "$14.99", imageFile: "IMG_4" }
+            { id: "CCC-001", category: "Faith", title: "Faith & Inspiration Pens", desc: "Beautiful rhinestone pens featuring Holy Bible, Cross, and God's Plan focals.", price: "14.99", imageFile: "IMG_32" },
+            { id: "CCC-002", category: "Teacher", title: "Teacher & Graduation Pens", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: "14.99", imageFile: "IMG_33" },
+            { id: "CCC-003", category: "Teacher", title: "Nurses & Medical Heroes", desc: "Show support for healthcare heroes with these adorable nurse and awareness pens.", price: "14.99", imageFile: "IMG_31" },
+            { id: "CCC-004", category: "Characters", title: "Stitch & Friends Characters", desc: "Super fun focal beads featuring everyone's favorite alien in various colors.", price: "14.99", imageFile: "IMG_30" },
+            { id: "CCC-005", category: "Sorority", title: "Delta Sigma Theta Premium", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: "14.99", imageFile: "IMG_34" },
+            { id: "CCC-006", category: "Personalized", title: "Personalized Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: "24.99", imageFile: "IMG_35" },
+            { id: "CCC-007", category: "Elegant", title: "Elegant Satin Bow Pens", desc: "Luxurious satin bow focals paired with brilliant rhinestones and character accents.", price: "19.99", imageFile: "IMG_36" },
+            { id: "CCC-008", category: "Characters", title: "Disney Character Focals", desc: "Super fun focal beads featuring Toy Story Aliens and Donald Duck.", price: "14.99", imageFile: "IMG_12" },
+            { id: "CCC-009", category: "Elegant", title: "Elegant Pearl Beaded Pens", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: "14.99", imageFile: "IMG_14" },
+            { id: "CCC-010", category: "Teacher", title: "Teach Love Inspire Pen", desc: "Show appreciation for educators with this beautiful rhinestone apple and book focal.", price: "14.99", imageFile: "IMG_15" },
+            { id: "CCC-011", category: "Sorority", title: "Ballet, Dance & Dental Pens", desc: "Stunning pink and black rhinestone pens featuring ballet slippers, 'Dance', and happy tooth charms.", price: "14.99", imageFile: "IMG_16" },
+            { id: "CCC-013", category: "Characters", title: "Anime & Grad Pens", desc: "A varied collection featuring fun lanyards, character pens, and graduation caps.", price: "14.99", imageFile: "IMG_25" },
+            { id: "CCC-014", category: "Elegant", title: "Rose Gold & Character Styles", desc: "Luxurious rose gold rhinestone beads alongside classic character designs.", price: "14.99", imageFile: "IMG_27" },
+            { id: "CCC-015", category: "Sorority", title: "DST & AKA Sorority Focals", desc: "Crimson, cream, pink, and green perfection featuring 'Understand the Assignment' charms.", price: "14.99", imageFile: "IMG_28" },
+            { id: "CCC-016", category: "Teacher", title: "Boxed Display Gifts", desc: "Perfect gifts for educators or Disney fans, presented in sleek protective display cases.", price: "14.99", imageFile: "IMG_5" },
+            { id: "CCC-017", category: "Characters", title: "Gamer & Sport Characters", desc: "Super fun focal beads featuring Pikachu, Bowser, Kuromi, and Basketballs.", price: "14.99", imageFile: "IMG_8" },
+            { id: "CCC-018", category: "Teacher", title: "Medical, Grad & Awareness", desc: "Celebrate milestones with graduation caps, or show support with awareness ribbons.", price: "14.99", imageFile: "IMG_7" },
+            { id: "CCC-020", category: "Sorority", title: "AKA & DST Emblem Pens", desc: "Premium crimson & cream and pink & green themed pens with detailed charms.", price: "14.99", imageFile: "IMG_4" }
         ];
 
         // Render products
@@ -409,9 +489,8 @@
             });
 
             filteredProducts.forEach(product => {
-                const cleanPrice = product.price.replace('$', '');
+                const cleanPrice = product.price;
                 
-                // Snipcart Custom Fields: Add textbox rules if it's a personalized pen
                 let customFields = '';
                 if (product.category === 'Personalized') {
                     customFields = `
@@ -431,7 +510,7 @@
                         <div class="card-category">${product.category}</div>
                         <h3 class="card-title">${product.title}</h3>
                         <p class="card-desc">${product.desc}</p>
-                        <div class="card-price">${product.price}</div>
+                        <div class="card-price">$${product.price.toFixed(2)}</div>
                         <button class="btn-add snipcart-add-item"
                             data-item-id="${product.id}"
                             data-item-price="${cleanPrice}"
@@ -461,7 +540,7 @@
             );
 
             searchedProducts.forEach(product => {
-                const cleanPrice = product.price.replace('$', '');
+                const cleanPrice = product.price;
                 
                 let customFields = '';
                 if (product.category === 'Personalized') {
@@ -482,7 +561,7 @@
                         <div class="card-category">${product.category}</div>
                         <h3 class="card-title">${product.title}</h3>
                         <p class="card-desc">${product.desc}</p>
-                        <div class="card-price">${product.price}</div>
+                        <div class="card-price">$${product.price.toFixed(2)}</div>
                         <button class="btn-add snipcart-add-item"
                             data-item-id="${product.id}"
                             data-item-price="${cleanPrice}"
@@ -497,6 +576,22 @@
                 `;
                 grid.appendChild(card);
             });
+        }
+
+        // Add to Cart Animation
+        function addToCart(event) {
+            cartTotal++;
+            document.getElementById('cartCount').innerText = cartTotal;
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "✓ Added!";
+            btn.style.backgroundColor = "#2e7d32"; 
+            btn.style.color = "var(--brand-white)";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = "var(--brand-gold)";
+                btn.style.color = "var(--brand-black)";
+            }, 1000);
         }
 
         // Load 'All' on startup
