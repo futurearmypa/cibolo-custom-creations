@@ -185,10 +185,17 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Hover Zoom Effect for Clickable Images */
         .card-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card-img-container img:hover {
+            transform: scale(1.08);
         }
 
         .card-content {
@@ -247,6 +254,43 @@
         .btn-add:hover {
             background-color: var(--brand-accent);
             transform: scale(1.02);
+        }
+
+        /* Lightbox (Image Popup) Styles */
+        #lightbox {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--brand-gold);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--brand-gold);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--brand-white);
         }
 
         /* About Us Section */
@@ -393,6 +437,11 @@
             </div>
     </div>
 
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Expanded View">
+    </div>
+
     <div class="about-section">
         <div class="about-container">
             <h2>Welcome to Cibolo Custom Creations</h2>
@@ -402,7 +451,7 @@
             <div class="about-grid">
                 <div class="about-box">
                     <h3>Custom Accessories</h3>
-                    <p>Make your mark with our signature beadable accessories. Whether you are looking for a beautifully crafted Custom Pen, a fun character design, or a premium piece featuring your specific name and colors, we build every item to stand out.</p>
+                    <p>Make your mark with our signature beadable accessories. Whether you are looking for a beautifully crafted Regular Custom Pen, a fun character design, or a premium piece featuring your specific name and colors, we build every item to stand out.</p>
                 </div>
                 <div class="about-box">
                     <h3>Gifts & Essentials</h3>
@@ -427,6 +476,18 @@
     </footer>
 
     <script>
+        // Lightbox Functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
         // Image Fallback to handle any JPG/JPG case issues gracefully
         function fallbackImage(img, baseName) {
             if (!img.dataset.triedJpg) {
@@ -443,30 +504,32 @@
                 img.src = baseName + '.jpg.JPG';
             } else {
                 img.onerror = null;
-                img.parentElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #888; border: 1px dashed #333;">Missing:<br>' + baseName + '.jpg</div>';
+                img.parentElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #888; border: 1px dashed #333;">Missing:<br>' + baseName + '</div>';
             }
         }
 
-        // Product Database
+        // Consolidated Product Database (One entry per image)
         const products = [
-            { id: "CCC-001", category: "Faith", title: "Faith & Inspiration Pens", desc: "Beautiful rhinestone pens featuring Holy Bible, Cross, and God's Plan focals.", price: "14.99", imageFile: "IMG_32" },
-            { id: "CCC-002", category: "Teacher", title: "Teacher & Graduation Pens", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: "14.99", imageFile: "IMG_33" },
-            { id: "CCC-003", category: "Teacher", title: "Nurses & Medical Heroes", desc: "Show support for healthcare heroes with these adorable nurse and awareness pens.", price: "14.99", imageFile: "IMG_31" },
-            { id: "CCC-004", category: "Characters", title: "Stitch & Friends Characters", desc: "Super fun focal beads featuring everyone's favorite alien in various colors.", price: "14.99", imageFile: "IMG_30" },
-            { id: "CCC-005", category: "Sorority", title: "Delta Sigma Theta Premium", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: "14.99", imageFile: "IMG_34" },
-            { id: "CCC-006", category: "Personalized", title: "Personalized Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: "24.99", imageFile: "IMG_35" },
-            { id: "CCC-007", category: "Elegant", title: "Elegant Satin Bow Pens", desc: "Luxurious satin bow focals paired with brilliant rhinestones and character accents.", price: "19.99", imageFile: "IMG_36" },
-            { id: "CCC-008", category: "Characters", title: "Disney Character Focals", desc: "Super fun focal beads featuring Toy Story Aliens and Donald Duck.", price: "14.99", imageFile: "IMG_12" },
-            { id: "CCC-009", category: "Elegant", title: "Elegant Pearl Beaded Pens", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: "14.99", imageFile: "IMG_14" },
-            { id: "CCC-010", category: "Teacher", title: "Teach Love Inspire Pen", desc: "Show appreciation for educators with this beautiful rhinestone apple and book focal.", price: "14.99", imageFile: "IMG_15" },
-            { id: "CCC-011", category: "Sorority", title: "Ballet, Dance & Dental Pens", desc: "Stunning pink and black rhinestone pens featuring ballet slippers, 'Dance', and happy tooth charms.", price: "14.99", imageFile: "IMG_16" },
-            { id: "CCC-013", category: "Characters", title: "Anime & Grad Pens", desc: "A varied collection featuring fun lanyards, character pens, and graduation caps.", price: "14.99", imageFile: "IMG_25" },
-            { id: "CCC-014", category: "Elegant", title: "Rose Gold & Character Styles", desc: "Luxurious rose gold rhinestone beads alongside classic character designs.", price: "14.99", imageFile: "IMG_27" },
-            { id: "CCC-015", category: "Sorority", title: "DST & AKA Sorority Focals", desc: "Crimson, cream, pink, and green perfection featuring 'Understand the Assignment' charms.", price: "14.99", imageFile: "IMG_28" },
-            { id: "CCC-016", category: "Teacher", title: "Boxed Display Gifts", desc: "Perfect gifts for educators or Disney fans, presented in sleek protective display cases.", price: "14.99", imageFile: "IMG_5" },
-            { id: "CCC-017", category: "Characters", title: "Gamer & Sport Characters", desc: "Super fun focal beads featuring Pikachu, Bowser, Kuromi, and Basketballs.", price: "14.99", imageFile: "IMG_8" },
-            { id: "CCC-018", category: "Teacher", title: "Medical, Grad & Awareness", desc: "Celebrate milestones with graduation caps, or show support with awareness ribbons.", price: "14.99", imageFile: "IMG_7" },
-            { id: "CCC-020", category: "Sorority", title: "AKA & DST Emblem Pens", desc: "Premium crimson & cream and pink & green themed pens with detailed charms.", price: "14.99", imageFile: "IMG_4" }
+            { id: "CCC-SET-01", category: "Faith", title: "Faith Collection (Pens 1-6)", desc: "A beautiful collection of rhinestone pens featuring Holy Bible, Cross, and inspirational focals.", price: 14.99, imageFile: "IMG_1" },
+            { id: "CCC-SET-02", category: "Teacher", title: "Teacher & Grad Collection (Pens 7-12)", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: 14.99, imageFile: "IMG_2" },
+            { id: "CCC-SET-03", category: "Teacher", title: "Medical & Awareness Collection (Pens 13-17)", desc: "Show support for healthcare heroes and educators with these adorable pens.", price: 14.99, imageFile: "IMG_3" },
+            { id: "CCC-SET-04", category: "Characters", title: "Stitch & Friends Collection (Pens 18-23)", desc: "Super fun focal beads featuring everyone's favorite alien and elegant jewel accents.", price: 14.99, imageFile: "IMG_4" },
+            { id: "CCC-SET-05", category: "Sorority", title: "Delta Sigma Theta Premium Set (Pens 24-29)", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: 14.99, imageFile: "IMG_5" },
+            { id: "CCC-SET-06", category: "Elegant", title: "Elegant Bow & Character Set (Pens 30-34)", desc: "Luxurious satin bow focals paired with brilliant rhinestones and character accents.", price: 19.99, imageFile: "IMG_6" },
+            { id: "CCC-SET-07", category: "Characters", title: "Disney & Faith Set (Pens 35-39)", desc: "A mix of fun Toy Story Alien, Donald Duck, and elegant cross focals.", price: 14.99, imageFile: "IMG_7" },
+            { id: "CCC-SET-08", category: "Elegant", title: "Pearl Beaded Pens (Pens 40-42)", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: 14.99, imageFile: "IMG_8" },
+            { id: "CCC-SET-09", category: "Sorority", title: "Ballet & Dance Set (Pens 43-46)", desc: "Stunning pink and black rhinestone pens featuring ballet slippers and 'Dance' hearts.", price: 14.99, imageFile: "IMG_9" },
+            { id: "CCC-SET-10", category: "Characters", title: "Sports, Anime & Grad Set (Pens 47-53)", desc: "A varied collection featuring fun lanyards, sports pens, and graduation caps.", price: 14.99, imageFile: "IMG_10" },
+            { id: "CCC-SET-11", category: "Characters", title: "Character & Elegant Pens (Pens 54-55)", desc: "Featuring Donald Duck character focals and elegant rose gold designs.", price: 14.99, imageFile: "IMG_11" },
+            { id: "CCC-SET-12", category: "Sorority", title: "AKA & DST Sorority Set (Pens 56-59)", desc: "Celebrate your sorority pride with these crimson, cream, pink, and green pens.", price: 14.99, imageFile: "IMG_12" },
+            { id: "CCC-SET-13", category: "Teacher", title: "Teacher & Stitch Boxed Set (Pens 60-63)", desc: "Beautifully boxed pens perfect for teacher appreciation or Stitch fans.", price: 14.99, imageFile: "IMG_13" },
+            { id: "CCC-SET-14", category: "Characters", title: "Sports Theme Collection (Pens 64-70)", desc: "Show off your favorite sport with basketball, tennis, soccer, and baseball focals.", price: 14.99, imageFile: "IMG_14" },
+            { id: "CCC-SET-15", category: "Sorority", title: "Delta Sigma Theta Set 2 (Pens 71-76)", desc: "Gorgeous DST beaded pens featuring intricate charms and rich crimson colors.", price: 14.99, imageFile: "IMG_15" },
+            { id: "CCC-SET-16", category: "Faith", title: "Faith & Medical Hero Set (Pens 77-82)", desc: "Inspiring Holy Bible and Jesus crosses, alongside adorable nurse uniform focals.", price: 14.99, imageFile: "IMG_16" },
+            { id: "CCC-SET-17", category: "Faith", title: "Faith & Prayer Cross Set (Pens 83-88)", desc: "Keep faith close with beautiful Jesus cross and 'Pray On It' beaded designs.", price: 14.99, imageFile: "IMG_17" },
+            { id: "CCC-SET-18", category: "Characters", title: "Stitch & Volleyball Set (Pens 89-94)", desc: "A fun collection featuring Stitch with his guitar and vibrant volleyball focals.", price: 14.99, imageFile: "IMG_18" },
+            { id: "CCC-SET-19", category: "Elegant", title: "Elegant Pearl & Crystal Set (Pens 95-101)", desc: "Classic, sophisticated Custom Pens featuring beautiful pearl and crystal bead accents.", price: 14.99, imageFile: "IMG_19" },
+            { id: "CCC-SET-20", category: "Personalized", title: "Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: 24.99, imageFile: "IMG_33" }
         ];
 
         // Render products
@@ -498,13 +561,19 @@
                         data-item-custom1-type="textbox"
                         data-item-custom1-required="true"
                     `;
+                } else {
+                     customFields = `
+                        data-item-custom1-name="Which Pen Number?"
+                        data-item-custom1-type="textbox"
+                        data-item-custom1-required="true"
+                    `;
                 }
 
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="card-img-container">
-                        <img src="${product.imageFile}.jpg" alt="${product.title}" onerror="fallbackImage(this, '${product.imageFile}')">
+                        <img src="${product.imageFile}.jpg" alt="${product.title}" onclick="openLightbox(this.src)" onerror="fallbackImage(this, '${product.imageFile}')">
                     </div>
                     <div class="card-content">
                         <div class="card-category">${product.category}</div>
@@ -549,13 +618,19 @@
                         data-item-custom1-type="textbox"
                         data-item-custom1-required="true"
                     `;
+                } else {
+                     customFields = `
+                        data-item-custom1-name="Which Pen Number?"
+                        data-item-custom1-type="textbox"
+                        data-item-custom1-required="true"
+                    `;
                 }
 
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="card-img-container">
-                        <img src="${product.imageFile}.jpg" alt="${product.title}" onerror="fallbackImage(this, '${product.imageFile}')">
+                        <img src="${product.imageFile}.jpg" alt="${product.title}" onclick="openLightbox(this.src)" onerror="fallbackImage(this, '${product.imageFile}')">
                     </div>
                     <div class="card-content">
                         <div class="card-category">${product.category}</div>
@@ -576,22 +651,6 @@
                 `;
                 grid.appendChild(card);
             });
-        }
-
-        // Add to Cart Animation
-        function addToCart(event) {
-            cartTotal++;
-            document.getElementById('cartCount').innerText = cartTotal;
-            const btn = event.target;
-            const originalText = btn.innerText;
-            btn.innerText = "✓ Added!";
-            btn.style.backgroundColor = "#2e7d32"; 
-            btn.style.color = "var(--brand-white)";
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.backgroundColor = "var(--brand-gold)";
-                btn.style.color = "var(--brand-black)";
-            }, 1000);
         }
 
         // Load 'All' on startup
