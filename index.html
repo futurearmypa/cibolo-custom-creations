@@ -237,7 +237,77 @@
             margin-bottom: 15px;
         }
 
+        /* Pen Selection Grid */
+        .pen-selector-section {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .selector-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .pen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .pen-btn {
+            padding: 8px 4px;
+            background-color: var(--border-color);
+            color: var(--text-muted);
+            border: 2px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .pen-btn:hover {
+            border-color: var(--brand-gold);
+            color: var(--brand-gold);
+        }
+
+        .pen-btn.selected {
+            background-color: var(--brand-gold);
+            color: var(--brand-black);
+            border-color: var(--brand-gold);
+        }
+
+        .selected-pens-display {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding: 8px;
+            background-color: rgba(192, 160, 96, 0.1);
+            border-radius: 4px;
+            border-left: 2px solid var(--brand-gold);
+            min-height: 20px;
+        }
+
+        .selected-pens-display.active {
+            color: var(--brand-gold);
+            background-color: rgba(192, 160, 96, 0.15);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
         .btn-add {
+            flex: 1;
             background-color: var(--brand-gold);
             color: var(--brand-black);
             border: none;
@@ -245,15 +315,40 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            width: 100%;
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 13px;
         }
 
-        .btn-add:hover {
+        .btn-add:hover:not(:disabled) {
             background-color: var(--brand-accent);
             transform: scale(1.02);
+        }
+
+        .btn-add:disabled {
+            background-color: #666;
+            color: #999;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .btn-clear {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .btn-clear:hover {
+            background-color: rgba(255, 140, 0, 0.1);
+            border-color: var(--brand-accent);
+            color: var(--brand-accent);
         }
 
         /* Lightbox (Image Popup) Styles */
@@ -404,6 +499,21 @@
             color: #666;
             border-top: 1px solid var(--border-color);
         }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .pen-grid {
+                grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-group button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -445,21 +555,21 @@
     <div class="about-section">
         <div class="about-container">
             <h2>Welcome to Cibolo Custom Creations</h2>
-            <p>Elevate your everyday essentials and make your next celebration unforgettable. At Cibolo Custom Creations, we bring a touch of luxury and deep personalization to everything we craft—from beautiful desk accessories to show-stopping event decor.</p>
+            <p>Elevate your everyday essentials and make your next celebration unforgettable. At Cibolo Custom Creations, we bring a touch of luxury and deep personalization to everything we craft—from handcrafted custom pens to stunning balloon arches.</p>
             <p>Whether you are treating yourself, finding the perfect gift for a teacher or graduate, or planning a massive party, we are here to bring your vision to life.</p>
             
             <div class="about-grid">
                 <div class="about-box">
                     <h3>Custom Accessories</h3>
-                    <p>Make your mark with our signature beadable accessories. Whether you are looking for a beautifully crafted, custom pen, a fun character design, or a premium piece featuring your specific name and colors, we build every item to stand out.</p>
+                    <p>Make your mark with our signature beadable accessories. Whether you are looking for a beautifully crafted, custom pen, a fun character design, or a premium piece featuring your faith—we have it all. Each pen is handcrafted with meticulous care.</p>
                 </div>
                 <div class="about-box">
                     <h3>Gifts & Essentials</h3>
-                    <p>Upgrade your workspace with custom pens and premium stationery. Discover our collection of unique fidget toys, custom jewelry, and celebratory graduation leis, all designed with our signature attention to detail.</p>
+                    <p>Upgrade your workspace with custom pens and premium stationery. Discover our collection of unique fidget toys, custom jewelry, and celebratory graduation leis, all designed with your needs in mind.</p>
                 </div>
                 <div class="about-box">
                     <h3>Professional Event Decor</h3>
-                    <p>Proudly serving Cibolo, Schertz, and the surrounding San Antonio area, we specialize in custom balloon arches, stunning garlands, and eye-catching centerpieces. We work directly with you to match your exact theme.</p>
+                    <p>Proudly serving Cibolo, Schertz, and the surrounding San Antonio area, we specialize in custom balloon arches, stunning garlands, and eye-catching centerpieces. We work directly with you to create unforgettable celebrations.</p>
                 </div>
             </div>
         </div>
@@ -467,7 +577,7 @@
 
     <div class="balloon-cta">
         <h2>CUSTOM BALLOON ARCHES & EVENT DECOR</h2>
-        <p>Make your next celebration unforgettable with our professional balloon arches, garlands, and custom centerpieces. Serving Cibolo, Schertz, and the surrounding San Antonio area. Contact us today to discuss your theme and get a custom quote!</p>
+        <p>Make your next celebration unforgettable with our professional balloon arches, garlands, and custom centerpieces. Serving Cibolo, Schertz, and the surrounding San Antonio area. Contact us today for a personalized quote!</p>
         <a href="mailto:info@cibolocustomcreations.com?subject=Balloon Arch Inquiry" class="btn-balloon">Request a Quote</a>
     </div>
 
@@ -475,36 +585,40 @@
         <p>&copy; 2026 Cibolo Custom Creations. All rights reserved.</p>
     </footer>
 
-    <div style="display: none;">
-        <button class="snipcart-add-item" data-item-id="CCC-SET-01" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-02" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-03" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-04" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-05" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-06" data-item-price="19.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-07" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-08" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-09" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-10" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-11" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-12" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-13" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-14" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-15" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-16" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-17" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-18" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-19" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-20" data-item-price="24.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-21" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-22" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-23" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-24" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-25" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
-        <button class="snipcart-add-item" data-item-id="CCC-SET-26" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com"></button>
+    <!-- Hidden Snipcart buttons for cart functionality -->
+    <div style="display: none;" id="snipcartButtons">
+        <button class="snipcart-add-item" data-item-id="CCC-SET-01" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-02" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-03" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-04" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-05" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-06" data-item-price="19.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-07" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-08" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-09" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-10" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-11" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-12" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-13" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-14" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-15" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-16" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-17" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-18" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-19" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-20" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-21" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-22" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-23" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-24" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-25" data-item-price="14.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Which Pen Number?" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
+        <button class="snipcart-add-item" data-item-id="CCC-SET-26" data-item-price="24.99" data-item-url="https://www.cibolocustomcreations.com" data-item-custom1-name="Enter the Custom Name for this Pen" data-item-custom1-type="textbox" data-item-custom1-required="true"></button>
     </div>
 
     <script>
+        // Track selected pens per product
+        const selectedPens = {};
+
         // Lightbox Functions
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
@@ -517,7 +631,7 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // Image Fallback to handle any JPG/JPG case issues gracefully
+        // Image Fallback
         function fallbackImage(img, baseName) {
             if (!img.dataset.triedJpg) {
                 img.dataset.triedJpg = 'true';
@@ -537,35 +651,123 @@
             }
         }
 
-        // Consolidated Product Database (One entry per image)
+        // Product Database
         const products = [
-            { id: "CCC-SET-01", category: "Faith", title: "Faith Collection (Pens 1-6)", desc: "A beautiful collection of rhinestone pens featuring Holy Bible, Cross, and inspirational pens.", price: 14.99, imageFile: "IMG_1" },
-            { id: "CCC-SET-02", category: "Teacher", title: "Teacher & Grad Collection (Pens 7-12)", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: 14.99, imageFile: "IMG_2" },
-            { id: "CCC-SET-03", category: "Teacher", title: "Medical & Awareness Collection (Pens 13-17)", desc: "Show support for healthcare heroes and educators with these adorable pens.", price: 14.99, imageFile: "IMG_3" },
-            { id: "CCC-SET-04", category: "Characters", title: "Stitch & Friends Collection (Pens 18-23)", desc: "Super fun pens featuring everyone's favorite alien and elegant jewel accents.", price: 14.99, imageFile: "IMG_4" },
-            { id: "CCC-SET-05", category: "Sorority", title: "Delta Sigma Theta Premium Set (Pens 24-29)", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: 14.99, imageFile: "IMG_5" },
-            { id: "CCC-SET-06", category: "Elegant", title: "Elegant Bow & Character Set (Pens 30-34)", desc: "Luxurious satin bow pens paired with brilliant rhinestones and character accents.", price: 19.99, imageFile: "IMG_6" },
-            { id: "CCC-SET-07", category: "Characters", title: "Disney & Faith Set (Pens 35-39)", desc: "A mix of the fun cartoon alien, duck, and elegant crosses.", price: 14.99, imageFile: "IMG_7" },
-            { id: "CCC-SET-08", category: "Elegant", title: "Pearl Beaded Pens (Pens 40-42)", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: 14.99, imageFile: "IMG_8" },
-            { id: "CCC-SET-09", category: "Sorority", title: "Ballet & Dance Set (Pens 43-46)", desc: "Stunning pink and black rhinestone pens featuring ballet slippers and 'dance' hearts.", price: 14.99, imageFile: "IMG_9" },
-            { id: "CCC-SET-10", category: "Characters", title: "Sports, Anime & Grad Set (Pens 47-53)", desc: "A varied collection featuring fun lanyards, sports pens, and graduation caps.", price: 14.99, imageFile: "IMG_10" },
-            { id: "CCC-SET-11", category: "Characters", title: "Character & Elegant Pens (Pens 54-55)", desc: "Featuring your favorite duck character and elegant rose gold designs.", price: 14.99, imageFile: "IMG_11" },
-            { id: "CCC-SET-12", category: "Sorority", title: "AKA & DST Sorority Set (Pens 56-59)", desc: "Celebrate your sorority pride with these crimson and cream or pink and green pens.", price: 14.99, imageFile: "IMG_12" },
-            { id: "CCC-SET-13", category: "Teacher", title: "Teacher & Stitch Boxed Set (Pens 60-63)", desc: "Beautifully boxed pens perfect for teacher appreciation or cartoon alien fans.", price: 14.99, imageFile: "IMG_13" },
-            { id: "CCC-SET-14", category: "Characters", title: "Sports Theme Collection (Pens 64-70)", desc: "Show off your favorite sport with basketball, tennis, soccer, and baseball pens.", price: 14.99, imageFile: "IMG_14" },
-            { id: "CCC-SET-15", category: "Sorority", title: "Delta Sigma Theta Set 2 (Pens 71-76)", desc: "Gorgeous DST beaded pens featuring intricate charms and rich crimson colors.", price: 14.99, imageFile: "IMG_15" },
-            { id: "CCC-SET-16", category: "Faith", title: "Faith & Medical Hero Set (Pens 77-82)", desc: "Inspiring Holy Bible and Jesus Crosses, alongside adorable nurse uniform pens.", price: 14.99, imageFile: "IMG_16" },
-            { id: "CCC-SET-17", category: "Faith", title: "Faith & Prayer Cross Set (Pens 83-88)", desc: "Keep faith close with beautiful Jesus Cross and 'Pray On It' designs.", price: 14.99, imageFile: "IMG_17" },
-            { id: "CCC-SET-18", category: "Characters", title: "Stitch & Volleyball Set (Pens 89-94)", desc: "A fun collection featuring that cartoon alien with his guitar and vibrant volleyball focals.", price: 14.99, imageFile: "IMG_18" },
-            { id: "CCC-SET-19", category: "Elegant", title: "Elegant Pearl & Crystal Set (Pens 95-101)", desc: "Classic, sophisticated custom pens featuring beautiful pearl and crystal bead accents.", price: 14.99, imageFile: "IMG_19" },
-            { id: "CCC-SET-20", category: "Faith", title: "Faith Collection (Pens 102-107)", desc: "Beautifully crafted pens featuring 'Faith Over Fear', 'Amazing Grace', and other inspirational pens.", price: 14.99, imageFile: "IMG_20"},
-            { id: "CCC-SET-21", category: "Chick-fil-A", title: "Chick-Fil-A Collection (Pens 108-111)", desc: "A fun set of decorative pens with Chick-fil-A toppers and cow themes.", price: 14.99, imageFile: "IMG_21"},
-            { id: "CCC-SET-22", category: "Faith", title: "Faith Collection (Pens 112-117)", desc: "Faith-based Jesus Cross designs, an 'Army Mom' motif, an intricate black and white patterned style, and an orange and black Harley-Davidson logo pen.", price: 14.99, imageFile: "IMG_22"},
-            { id: "CCC-SET-23", category: "Elegant", title: "Elegant Flower Collection (Pens 118-123)", desc: "Elaborate, handcrafted designs adorned with sparkling rhinestones, textured floral accents, and glossy focal beads.", price: 14.99, imageFile: "IMG_23"},
-            { id: "CCC-SET-24", category: "Sorority", title: "AKA Sorority Collection (Pens 124-129)", desc: "Celebrate AKA sorority with intricate, handcrafted designs in the organization's signature pink and green colorway.", price: 14.99, imageFile: "IMG_24"},
-            { id: "CCC-SET-25", category: "Juneteenth", title: "Juneteenth Collection (Pens 130-133)", desc: "Celebrates Juneteenth and Black history with vibrant Pan-African colors — red, black, green, and yellow.", price: 14.99, imageFile: "IMG_25"},
-            { id: "CCC-SET-20", category: "Personalized", title: "Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: 24.99, imageFile: "IMG_33" }
+            { id: "CCC-SET-01", category: "Faith", title: "Faith Collection (Pens 1-6)", desc: "A beautiful collection of rhinestone pens featuring Holy Bible, Cross, and inspirational pens.", price: 14.99, imageFile: "IMG_1", minPen: 1, maxPen: 6 },
+            { id: "CCC-SET-02", category: "Teacher", title: "Teacher & Grad Collection (Pens 7-12)", desc: "Celebrate milestones with 'Math Pi', 'Teachers Plant Seeds', and grad caps.", price: 14.99, imageFile: "IMG_2", minPen: 7, maxPen: 12 },
+            { id: "CCC-SET-03", category: "Teacher", title: "Medical & Awareness Collection (Pens 13-17)", desc: "Show support for healthcare heroes and educators with these adorable pens.", price: 14.99, imageFile: "IMG_3", minPen: 13, maxPen: 17 },
+            { id: "CCC-SET-04", category: "Characters", title: "Stitch & Friends Collection (Pens 18-23)", desc: "Super fun pens featuring everyone's favorite alien and elegant jewel accents.", price: 14.99, imageFile: "IMG_4", minPen: 18, maxPen: 23 },
+            { id: "CCC-SET-05", category: "Sorority", title: "Delta Sigma Theta Premium Set (Pens 24-29)", desc: "Crimson and cream perfection featuring DST letters, 'SOROR', and intricate charms.", price: 14.99, imageFile: "IMG_5", minPen: 24, maxPen: 29 },
+            { id: "CCC-SET-06", category: "Elegant", title: "Elegant Bow & Character Set (Pens 30-34)", desc: "Luxurious satin bow pens paired with brilliant rhinestones and character accents.", price: 19.99, imageFile: "IMG_6", minPen: 30, maxPen: 34 },
+            { id: "CCC-SET-07", category: "Characters", title: "Disney & Faith Set (Pens 35-39)", desc: "A mix of the fun cartoon alien, duck, and elegant crosses.", price: 14.99, imageFile: "IMG_7", minPen: 35, maxPen: 39 },
+            { id: "CCC-SET-08", category: "Elegant", title: "Pearl Beaded Pens (Pens 40-42)", desc: "Classic, sophisticated pens featuring beautiful pearl bead accents in multiple colors.", price: 14.99, imageFile: "IMG_8", minPen: 40, maxPen: 42 },
+            { id: "CCC-SET-09", category: "Sorority", title: "Ballet & Dance Set (Pens 43-46)", desc: "Stunning pink and black rhinestone pens featuring ballet slippers and 'dance' hearts.", price: 14.99, imageFile: "IMG_9", minPen: 43, maxPen: 46 },
+            { id: "CCC-SET-10", category: "Characters", title: "Sports, Anime & Grad Set (Pens 47-53)", desc: "A varied collection featuring fun lanyards, sports pens, and graduation caps.", price: 14.99, imageFile: "IMG_10", minPen: 47, maxPen: 53 },
+            { id: "CCC-SET-11", category: "Characters", title: "Character & Elegant Pens (Pens 54-55)", desc: "Featuring your favorite duck character and elegant rose gold designs.", price: 14.99, imageFile: "IMG_11", minPen: 54, maxPen: 55 },
+            { id: "CCC-SET-12", category: "Sorority", title: "AKA & DST Sorority Set (Pens 56-59)", desc: "Celebrate your sorority pride with these crimson and cream or pink and green pens.", price: 14.99, imageFile: "IMG_12", minPen: 56, maxPen: 59 },
+            { id: "CCC-SET-13", category: "Teacher", title: "Teacher & Stitch Boxed Set (Pens 60-63)", desc: "Beautifully boxed pens perfect for teacher appreciation or cartoon alien fans.", price: 14.99, imageFile: "IMG_13", minPen: 60, maxPen: 63 },
+            { id: "CCC-SET-14", category: "Characters", title: "Sports Theme Collection (Pens 64-70)", desc: "Show off your favorite sport with basketball, tennis, soccer, and baseball pens.", price: 14.99, imageFile: "IMG_14", minPen: 64, maxPen: 70 },
+            { id: "CCC-SET-15", category: "Sorority", title: "Delta Sigma Theta Set 2 (Pens 71-76)", desc: "Gorgeous DST beaded pens featuring intricate charms and rich crimson colors.", price: 14.99, imageFile: "IMG_15", minPen: 71, maxPen: 76 },
+            { id: "CCC-SET-16", category: "Faith", title: "Faith & Medical Hero Set (Pens 77-82)", desc: "Inspiring Holy Bible and Jesus Crosses, alongside adorable nurse uniform pens.", price: 14.99, imageFile: "IMG_16", minPen: 77, maxPen: 82 },
+            { id: "CCC-SET-17", category: "Faith", title: "Faith & Prayer Cross Set (Pens 83-88)", desc: "Keep faith close with beautiful Jesus Cross and 'Pray On It' designs.", price: 14.99, imageFile: "IMG_17", minPen: 83, maxPen: 88 },
+            { id: "CCC-SET-18", category: "Characters", title: "Stitch & Volleyball Set (Pens 89-94)", desc: "A fun collection featuring that cartoon alien with his guitar and vibrant volleyball.", price: 14.99, imageFile: "IMG_18", minPen: 89, maxPen: 94 },
+            { id: "CCC-SET-19", category: "Elegant", title: "Elegant Pearl & Crystal Set (Pens 95-101)", desc: "Classic, sophisticated custom pens featuring beautiful pearl and crystal bead accents.", price: 14.99, imageFile: "IMG_19", minPen: 95, maxPen: 101 },
+            { id: "CCC-SET-20", category: "Faith", title: "Faith Collection (Pens 102-107)", desc: "Beautifully crafted pens featuring 'Faith Over Fear', 'Amazing Grace', and other inspirational designs.", price: 14.99, imageFile: "IMG_20", minPen: 102, maxPen: 107 },
+            { id: "CCC-SET-21", category: "Chick-fil-A", title: "Chick-Fil-A Collection (Pens 108-111)", desc: "A fun set of decorative pens with Chick-fil-A toppers and cow themes.", price: 14.99, imageFile: "IMG_21", minPen: 108, maxPen: 111 },
+            { id: "CCC-SET-22", category: "Faith", title: "Faith Collection (Pens 112-117)", desc: "Faith-based Jesus Cross designs, an 'Army Mom' motif, and intricate patterns.", price: 14.99, imageFile: "IMG_22", minPen: 112, maxPen: 117 },
+            { id: "CCC-SET-23", category: "Elegant", title: "Elegant Flower Collection (Pens 118-123)", desc: "Elaborate, handcrafted designs adorned with sparkling rhinestones and textured florals.", price: 14.99, imageFile: "IMG_23", minPen: 118, maxPen: 123 },
+            { id: "CCC-SET-24", category: "Sorority", title: "AKA Sorority Collection (Pens 124-129)", desc: "Celebrate AKA sorority with intricate, handcrafted designs in the organization's signature colors.", price: 14.99, imageFile: "IMG_24", minPen: 124, maxPen: 129 },
+            { id: "CCC-SET-25", category: "Juneteenth", title: "Juneteenth Collection (Pens 130-133)", desc: "Celebrates Juneteenth and Black history with vibrant Pan-African colors — red, black, green.", price: 14.99, imageFile: "IMG_25", minPen: 130, maxPen: 133 },
+            { id: "CCC-SET-26", category: "Personalized", title: "Custom Name Pen", desc: "Build your own! Add a permanent custom name decal to the barrel for a truly unique gift.", price: 24.99, imageFile: "IMG_26" }
         ];
+
+        function togglePenSelection(productId, penNumber) {
+            if (!selectedPens[productId]) {
+                selectedPens[productId] = [];
+            }
+
+            const index = selectedPens[productId].indexOf(penNumber);
+            if (index > -1) {
+                selectedPens[productId].splice(index, 1);
+            } else {
+                selectedPens[productId].push(penNumber);
+            }
+
+            updatePenDisplay(productId);
+        }
+
+        function updatePenDisplay(productId) {
+            const display = document.querySelector(`[data-product-id="${productId}"] .selected-pens-display`);
+            const addBtn = document.querySelector(`[data-product-id="${productId}"] .btn-add`);
+            const clearBtn = document.querySelector(`[data-product-id="${productId}"] .btn-clear`);
+
+            if (!display) return;
+
+            const selected = selectedPens[productId] || [];
+            
+            if (selected.length === 0) {
+                display.textContent = 'No pens selected';
+                display.classList.remove('active');
+                addBtn.disabled = true;
+                clearBtn.style.display = 'none';
+            } else {
+                display.textContent = `Selected: Pen #${selected.sort((a, b) => a - b).join(', #')}`;
+                display.classList.add('active');
+                addBtn.disabled = false;
+                clearBtn.style.display = 'block';
+            }
+
+            // Update button styles
+            document.querySelectorAll(`[data-product-id="${productId}"] .pen-btn`).forEach(btn => {
+                const penNum = parseInt(btn.dataset.pen);
+                if (selected.includes(penNum)) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+
+        function clearPenSelection(productId) {
+            selectedPens[productId] = [];
+            updatePenDisplay(productId);
+        }
+
+        function addToCartWithOptions(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const selected = selectedPens[productId] || [];
+
+            if (product.category === 'Personalized') {
+                triggerSnipcartButton(productId);
+            } else if (selected.length === 0) {
+                alert('Please select at least one pen number');
+                return;
+            } else {
+                // Add each selected pen to cart
+                selected.forEach(penNumber => {
+                    triggerSnipcartButton(productId, penNumber);
+                });
+                // Clear selection after adding
+                selectedPens[productId] = [];
+                updatePenDisplay(productId);
+            }
+        }
+
+        function triggerSnipcartButton(productId, penValue = '') {
+            const snipcartBtn = document.querySelector(`#snipcartButtons button[data-item-id="${productId}"]`);
+            if (snipcartBtn) {
+                if (penValue) {
+                    snipcartBtn.setAttribute('data-item-custom1-value', penValue);
+                }
+                snipcartBtn.click();
+                // Reset attribute for next use
+                if (penValue) {
+                    setTimeout(() => snipcartBtn.removeAttribute('data-item-custom1-value'), 100);
+                }
+            }
+        }
 
         // Render products
         function renderProducts(categoryFilter) {
@@ -587,25 +789,34 @@
             });
 
             filteredProducts.forEach(product => {
-                const cleanPrice = product.price;
+                const card = document.createElement('div');
+                card.className = 'card';
                 
-                let customFields = '';
-                if (product.category === 'Personalized') {
-                    customFields = `
-                        data-item-custom1-name="Enter the Custom Name for this Pen"
-                        data-item-custom1-type="textbox"
-                        data-item-custom1-required="true"
+                let selectorHTML = '';
+                if (product.category !== 'Personalized' && product.minPen && product.maxPen) {
+                    selectorHTML = `
+                        <div class="pen-selector-section" data-product-id="${product.id}">
+                            <label class="selector-label">Select Pen Numbers (click multiple):</label>
+                            <div class="pen-grid">
                     `;
-                } else {
-                     customFields = `
-                        data-item-custom1-name="Which Pen Number?"
-                        data-item-custom1-type="textbox"
-                        data-item-custom1-required="true"
+                    for (let i = product.minPen; i <= product.maxPen; i++) {
+                        selectorHTML += `
+                            <button class="pen-btn" type="button" data-pen="${i}" onclick="togglePenSelection('${product.id}', ${i})">
+                                #${i}
+                            </button>
+                        `;
+                    }
+                    selectorHTML += `
+                            </div>
+                            <div class="selected-pens-display">No pens selected</div>
+                            <div class="btn-group">
+                                <button type="button" class="btn-add" onclick="addToCartWithOptions('${product.id}')" disabled>Add Selected to Cart</button>
+                                <button type="button" class="btn-clear" onclick="clearPenSelection('${product.id}')" style="display: none;">Clear</button>
+                            </div>
+                        </div>
                     `;
                 }
 
-                const card = document.createElement('div');
-                card.className = 'card';
                 card.innerHTML = `
                     <div class="card-img-container">
                         <img src="${product.imageFile}.jpg" alt="${product.title}" onclick="openLightbox(this.src)" onerror="fallbackImage(this, '${product.imageFile}')">
@@ -615,16 +826,7 @@
                         <h3 class="card-title">${product.title}</h3>
                         <p class="card-desc">${product.desc}</p>
                         <div class="card-price">$${product.price.toFixed(2)}</div>
-                        <button class="btn-add snipcart-add-item"
-                            data-item-id="${product.id}"
-                            data-item-price="${cleanPrice}"
-                            data-item-url="https://www.cibolocustomcreations.com"
-                            data-item-image="https://www.cibolocustomcreations.com/${product.imageFile}.jpg"
-                            data-item-name="${product.title}"
-                            data-item-description="${product.desc}"
-                            ${customFields}>
-                            Add to Cart
-                        </button>
+                        ${selectorHTML}
                     </div>
                 `;
                 grid.appendChild(card);
@@ -644,25 +846,34 @@
             );
 
             searchedProducts.forEach(product => {
-                const cleanPrice = product.price;
+                const card = document.createElement('div');
+                card.className = 'card';
                 
-                let customFields = '';
-                if (product.category === 'Personalized') {
-                    customFields = `
-                        data-item-custom1-name="Enter the Custom Name for this Pen"
-                        data-item-custom1-type="textbox"
-                        data-item-custom1-required="true"
+                let selectorHTML = '';
+                if (product.category !== 'Personalized' && product.minPen && product.maxPen) {
+                    selectorHTML = `
+                        <div class="pen-selector-section" data-product-id="${product.id}">
+                            <label class="selector-label">Select Pen Numbers (click multiple):</label>
+                            <div class="pen-grid">
                     `;
-                } else {
-                     customFields = `
-                        data-item-custom1-name="Which Pen Number?"
-                        data-item-custom1-type="textbox"
-                        data-item-custom1-required="true"
+                    for (let i = product.minPen; i <= product.maxPen; i++) {
+                        selectorHTML += `
+                            <button class="pen-btn" type="button" data-pen="${i}" onclick="togglePenSelection('${product.id}', ${i})">
+                                #${i}
+                            </button>
+                        `;
+                    }
+                    selectorHTML += `
+                            </div>
+                            <div class="selected-pens-display">No pens selected</div>
+                            <div class="btn-group">
+                                <button type="button" class="btn-add" onclick="addToCartWithOptions('${product.id}')" disabled>Add Selected to Cart</button>
+                                <button type="button" class="btn-clear" onclick="clearPenSelection('${product.id}')" style="display: none;">Clear</button>
+                            </div>
+                        </div>
                     `;
                 }
 
-                const card = document.createElement('div');
-                card.className = 'card';
                 card.innerHTML = `
                     <div class="card-img-container">
                         <img src="${product.imageFile}.jpg" alt="${product.title}" onclick="openLightbox(this.src)" onerror="fallbackImage(this, '${product.imageFile}')">
@@ -672,16 +883,7 @@
                         <h3 class="card-title">${product.title}</h3>
                         <p class="card-desc">${product.desc}</p>
                         <div class="card-price">$${product.price.toFixed(2)}</div>
-                        <button class="btn-add snipcart-add-item"
-                            data-item-id="${product.id}"
-                            data-item-price="${cleanPrice}"
-                            data-item-url="https://www.cibolocustomcreations.com"
-                            data-item-image="https://www.cibolocustomcreations.com/${product.imageFile}.jpg"
-                            data-item-name="${product.title}"
-                            data-item-description="${product.desc}"
-                            ${customFields}>
-                            Add to Cart
-                        </button>
+                        ${selectorHTML}
                     </div>
                 `;
                 grid.appendChild(card);
@@ -698,7 +900,7 @@
             loadStrategy: 'on-user-interaction',
         };
 
-        (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+        (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).loadStrategy)!=null||(l.loadStrategy="on-user-interaction");var w=document.documentElement.getAttribute("lang"),v=new URL(window.location.href),y=v.searchParams.get("snipcart");window.snipcart={api:{session:null},client:{version:"3.0"}};var m=window.Snipcart=window.Snipcart||{},j=m.addItem||function(){},k=m.addItems||function(){},g=function(e){return"object"==typeof e.SnipcartSettings?e.SnipcartSettings.publicApiKey:e.Snipcart&&"object"==typeof e.Snipcart.publicApiKey?e.Snipcart.publicApiKey:null},h=function(e){return fetch(e).then(e=>e.json())};(m.addItem=function(e){return j(e)}),(m.addItems=function(e){return k(e)}),(m.fetchCategoryProducts=function(e){return h("/api/products/"+e)}),window.addEventListener("DOMContentLoaded",function(){var e={},c=g(window);c?(e.key=c,e.version="3.0",e.timeout=s.timeoutDuration,e.loadStrategy=l.loadStrategy,e.lang=w,e.snipcartTest=y):console.error("Snipcart API key not found")});})();
     </script>
 </body>
 </html>
